@@ -279,6 +279,17 @@ section {
   transform: translateY(0) rotate(45deg);
 }
 
+@keyframes animation{
+  from{
+      opacity: 0;
+      transform: translateY(15px);
+  }
+  to{
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}
+
 @media (max-width: 920px) {
   .hamburger-menu-container{
     display: flex;
@@ -298,17 +309,117 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: .65s;
+  }
+
+  #check:checked ~ .nav-btn{
+    transform: translateX(0);
+  }
+
+  #check:checked ~ .nav-btn .nav-link,
+  #check:checked ~ .nav-btn .log-sign{
+      animation: animation .5s ease forwards;
   }
 
   .nav-links{
     flex: initial;
     width: 100%;
-    background-color: red;
+  }
+
+  .nav-links > ul{
+    flex-direction: column;
+  }
+
+  .nav-link{
+    width: 100%;
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  .nav-link > a{
+    line-height: 1;
+    padding: 1.6rem 2rem;
+  }
+
+  .nav-link:hover > a{
+    transform: scale(1);
+    background-color: #50a9d6;
+  }
+
+  .dropdown{
+    position: initial;
+    top: initial;
+    left: initial;
+    transform: initial;
+    opacity: 1;
+    pointer-events: auto;
+    width: 100%;
+    padding: 0;
+    background-color: #3183ac;
+    display: none;
+  }
+
+  .nav-link:hover > .dropdown,
+    .dropdown-link:hover > .dropdown{
+        display: block;
+  }
+
+  .nav-link:hover > a > i,
+  .dropdown-link:hover > a > i{
+      transform: rotate(2deg);
+  }
+
+  .dropdown-link > a{
+    background-color: transparent;
+    color: #fff;
+    padding: 1.2rem 2rem;
+    line-height: 1;
+  }
+
+  .dropdown-link:not(:nth-last-child(2)){
+    border-bottom: none;
+  }
+
+  .arrow{
+    z-index: 1;
+    background-color: #69bde7;
+    left: 10%;
+    transform: scale(1.1) rotate(45deg);
+    transition: .5s;
+  }
+
+  .nav-link:hover .arrow{
+    background-color: #50a9d6;
+  }
+
+  .dropdown .dropdown .arrow{
+    display: none;
+  }
+
+  .dropdown-link:hover > a{
+    background-color: #3a91bd;
+  }
+
+  .dropdown-link:first-child:hover ~ .arrow{
+    background-color: #50a9d6;
+  }
+
+  .nav-link > a > i{
+    font-size: 1.1rem;
+    transform: rotate(-90deg);
+    transition: .7s;
   }
 
   .log-sign{
     flex: initial;
     width: 100%;
-    background-color: green;
+    padding: 1.5rem 1.9rem;
+    justify-content: flex-start;
+    opacity: 0;
+    transform: translateY(15px);
   }
+
 }
